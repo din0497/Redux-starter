@@ -39,29 +39,26 @@
 // console.log(book.toJS())
 
 import store from "./redux/store";
+import * as actions from './redux/actionTypes'
+import { bugAdded, bugRemoved, bugResolved } from "./redux/actions";
+
+// const unsubscribe = store.subscribe(() => {
+//   console.log("store changed!", store.getState());
+// })
 
 store.dispatch(
-  {
-    type: "bugAdded",
-    payload:{
-      description: 'Bug1'
-    }
-  }
+   bugAdded('new bug')
 )
+// unsubscribe()
+
 store.dispatch(
-  {
-    type: "bugAdded",
-    payload:{
-      description: 'Bug2'
-    }
-  }
+ bugAdded('one more bug')
 )
 
-store.dispatch({
-  type:'bugRemoved',
-  payload: {
-    id:1
-  }
-})
+store.dispatch(
+  bugResolved(1)
+)
+
+// store.dispatch(bugRemoved(2))
 
 console.log(store.getState());
